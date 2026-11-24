@@ -12,7 +12,7 @@ it('renders page metadata and a canonical URL without query parameters', async (
     },
     request: new Request('https://portfolio.example.test/preview/?draft=true'),
     slots: {
-      default: '<main><h1>Portfolio</h1></main>',
+      default: '<h1>Portfolio</h1>',
     },
   });
 
@@ -23,6 +23,6 @@ it('renders page metadata and a canonical URL without query parameters', async (
   expect(html).toContain(
     '<link rel="canonical" href="https://portfolio.example.test/preview/">',
   );
-  expect(html).toContain('<main><h1>Portfolio</h1></main>');
+  expect(html).toContain('<h1>Portfolio</h1>');
   expect(html).not.toContain('<script');
 });

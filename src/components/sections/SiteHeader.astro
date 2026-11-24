@@ -1,0 +1,49 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<header class="container">
+  <div class="header-row">
+    <a class="home-link" href="/" aria-label={`${name} home`}>
+      {name}
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="/projects/">Projects</a>
+      <a href="/notes/">Notes</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .header-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6) var(--space-20);
+    padding-block: var(--space-22);
+  }
+
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-6) var(--nav-gap);
+    padding-inline-end: var(--nav-end-space);
+  }
+
+  a {
+    font-weight: var(--weight-bold);
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: var(--focus-width);
+    text-underline-offset: var(--underline-offset);
+  }
+</style>
