@@ -1,5 +1,5 @@
 ---
-applyTo: "**/*.css,**/*.astro"
+applyTo: '**/*.css,**/*.astro'
 ---
 
 # Styling rules
