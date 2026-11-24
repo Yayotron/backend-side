@@ -1,7 +1,8 @@
 # Portfolio
 
-A static Astro site. Phase 0 provides the project tools and an unstyled placeholder page.
-The design and approved content will be added in later phases.
+A static Astro site. Phase 1 adds the design tokens, local fonts, header, footer,
+and keyboard skip link. The main page still shows TODO content.
+Project components and approved content will be added in later phases.
 
 ## Setup
 
@@ -60,6 +61,26 @@ until approved content is supplied.
 The original `copilot-kit/` directory is retained locally and ignored by Git.
 The active instructions and references are in the root `.github/` and `docs/` directories.
 
+## Phase 1 layout
+
+`BaseLayout` provides the header, one `main` landmark, and the footer.
+Pages put their content directly in its slot; do not add another `main`.
+The optional `name` prop defaults to a visible TODO.
+
+Archivo Black and DM Sans are served from local Fontsource packages with
+`font-display: swap`. The layout preloads the three font faces used by the shell.
+This lets the browser load them early without contacting a font service.
+
+The original design tokens are unchanged. Additional tokens cover reference
+spacing, font weights, and focus styles that were missing from the token list.
+The only breakpoint remains `max-width: 900px`.
+
+The name, location, email, and LinkedIn address are TODOs, not confirmed content.
+The GitHub link uses the repository owner's verified handle.
+Contact links to the footer until an email address is supplied.
+Projects and Notes point to the planned routes; those pages belong to later phases.
+The `/dev/components` page will be added in Phase 2 as planned.
+
 ## CI and deployment
 
 `.github/workflows/ci.yml` runs install, checks, unit tests, build, and browser tests
@@ -70,6 +91,6 @@ The sitemap integration reports a warning until a real `site` URL is set in
 `astro.config.ts`. The placeholder is marked `noindex`, and its canonical URL
 uses the local request origin until `site` is configured.
 
-TODO: Connect the GitHub repository and confirm the pull request workflow passes.
+The private repository is [Yayotron/backend-side](https://github.com/Yayotron/backend-side).
 In Phase 7, set the real `site` URL and repository `base` path and add GitHub Pages deployment.
 Do not treat the local canonical URL as a production URL.

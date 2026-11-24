@@ -1,0 +1,20 @@
+---
+interface Props {
+  name: string;
+}
+
+const { name } = Astro.props;
+---
+
+<footer id="contact" class="container">
+  {name}, TODO: city and country. TODO: email address &middot;{' '}
+  <a href="https://github.com/Yayotron">GitHub</a> &middot; TODO: LinkedIn URL
+</footer>
+
+<style>
+  footer {
+    margin-block: var(--space-100) var(--space-50);
+    font-weight: var(--weight-bold);
+    overflow-wrap: anywhere;
+  }
+</style>

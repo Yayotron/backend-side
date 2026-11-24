@@ -1,10 +1,23 @@
 ---
+import '@fontsource/archivo-black/400.css';
+import '@fontsource/dm-sans/400.css';
+import '@fontsource/dm-sans/700.css';
+import archivoBlack from '@fontsource/archivo-black/files/archivo-black-latin-400-normal.woff2?url';
+import dmSansRegular from '@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?url';
+import dmSansBold from '@fontsource/dm-sans/files/dm-sans-latin-700-normal.woff2?url';
+
+import SiteFooter from '../components/sections/SiteFooter.astro';
+import SiteHeader from '../components/sections/SiteHeader.astro';
+import '../styles/tokens.css';
+import '../styles/base.css';
+
 interface Props {
   title: string;
   description: string;
+  name?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, name = 'TODO: Name' } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
 ---
 
@@ -17,8 +30,53 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
     <meta name="description" content={description} />
     <meta name="robots" content="noindex" />
     <link rel="canonical" href={canonicalUrl} />
+    <link
+      rel="preload"
+      href={archivoBlack}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href={dmSansRegular}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href={dmSansBold}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <slot />
+    <a class="skip-link" href="#main-content">
+      Skip to content
+    </a>
+    <SiteHeader {name} />
+    <main id="main-content" class="container" tabindex="-1">
+      <slot />
+    </main>
+    <SiteFooter {name} />
   </body>
 </html>
+
+<style>
+  .skip-link {
+    position: absolute;
+    inset-block-start: var(--space-10);
+    inset-inline-start: var(--page-pad);
+    z-index: 1;
+    padding: var(--space-6) var(--space-10);
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-weight: var(--weight-bold);
+  }
+
+  .skip-link:not(:focus) {
+    clip-path: inset(50%);
+  }
+</style>
