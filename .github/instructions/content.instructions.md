@@ -1,5 +1,5 @@
 ---
-applyTo: "src/content/**,src/content.config.ts,src/lib/**"
+applyTo: 'src/content/**,src/content.config.ts,src/lib/**'
 ---
 
 # Content rules

@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v6.1.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7.1.0
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check types, lint, and formatting
+        run: pnpm check
+
+      - name: Run unit tests
+        run: pnpm test
+
+      - name: Build the site
+        run: pnpm build
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run browser and accessibility tests
+        run: pnpm e2e
+
+      - name: Upload browser test results
+        if: failure()
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: playwright-results
+          path: test-results/
+          retention-days: 7

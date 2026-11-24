@@ -1,5 +1,5 @@
 ---
-applyTo: "src/components/**,src/layouts/**,src/pages/**"
+applyTo: 'src/components/**,src/layouts/**,src/pages/**'
 ---
 
 # Component and page rules

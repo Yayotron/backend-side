@@ -1,0 +1,4 @@
+minimumReleaseAgeExclude:
+  - '@axe-core/playwright@4.14.1'
+  - '@types/node@26.6.7'
+strictPeerDependencies: true
