@@ -1,8 +1,8 @@
 # Portfolio
 
-A static Astro site. Phase 1 adds the design tokens, local fonts, header, footer,
-and keyboard skip link. The main page still shows TODO content.
-Project components and approved content will be added in later phases.
+A static Astro site. Phase 2 adds reusable design components and a review page at
+`/dev/components`. The home page still shows TODO content. Content collections
+and complete pages belong to later phases.
 
 ## Setup
 
@@ -79,7 +79,32 @@ The name, location, email, and LinkedIn address are TODOs, not confirmed content
 The GitHub link uses the repository owner's verified handle.
 Contact links to the footer until an email address is supplied.
 Projects and Notes point to the planned routes; those pages belong to later phases.
-The `/dev/components` page will be added in Phase 2 as planned.
+
+## Phase 2 components
+
+Open `http://localhost:4321/dev/components` after starting the development server.
+The page shows the hero, section headings, all poster colors, both sticker styles,
+chips, delivered rows, idea stages, panels, all milestone states, targets,
+architecture diagrams, a budget bar, and a pull quote. The shared header and footer
+are also present. The page has `noindex`; sitemap generation excludes `/dev` routes.
+
+All personal and project facts remain visible TODOs. The Model gateway diagram
+and budget values are marked as illustrative reference examples, not real results.
+Sample links point to a real section on the preview page, not invented project URLs.
+
+Components use typed props and server-rendered HTML with no client scripts.
+Posters use a title link with a CSS overlay across the card. This keeps the short
+link name without hiding the status, description, or diagram from assistive tools.
+Diagrams use typed nodes and routed edges; each instance needs a unique `id` for its
+accessible text and arrow marker. Both diagram color variants include a legend.
+The budget sizes blocks from positive values, highlights the largest non-headroom
+step, and provides all labels and values in its accessible name even when narrow
+blocks clip visual labels, as in the reference.
+
+Additional tokens cover values already present in the fixed references.
+The mobile section-heading scale and tighter panel padding follow the reference's
+mobile patch. DM Sans 500 is loaded locally for the medium-weight reference text.
+The home page is deliberately unchanged until the page-building phase.
 
 ## CI and deployment
 
@@ -91,6 +116,6 @@ The sitemap integration reports a warning until a real `site` URL is set in
 `astro.config.ts`. The placeholder is marked `noindex`, and its canonical URL
 uses the local request origin until `site` is configured.
 
-The private repository is [Yayotron/backend-side](https://github.com/Yayotron/backend-side).
+The public repository is [Yayotron/backend-side](https://github.com/Yayotron/backend-side).
 In Phase 7, set the real `site` URL and repository `base` path and add GitHub Pages deployment.
 Do not treat the local canonical URL as a production URL.

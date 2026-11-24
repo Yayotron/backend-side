@@ -1,0 +1,29 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="panel" role="group" aria-label={label}>
+  <slot />
+</div>
+
+<style>
+  .panel {
+    min-width: 0;
+    padding: var(--space-26);
+    border: var(--border);
+    box-shadow: var(--shadow-card);
+    background: var(--color-white);
+    color: var(--color-ink);
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 900px) {
+    .panel {
+      padding: var(--space-16);
+    }
+  }
+</style>

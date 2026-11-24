@@ -1,0 +1,46 @@
+---
+import Chip from './Chip.astro';
+
+interface Props {
+  title: string;
+  pitch: string;
+  market: string;
+  stage: 'researching' | 'refining';
+}
+
+const { title, pitch, market, stage } = Astro.props;
+const stages = { researching: 'Researching', refining: 'Refining' };
+---
+
+<article class="idea-card">
+  <Chip label={stages[stage]} variant="stage" />
+  <h3>{title}</h3>
+  <p>{pitch}</p>
+  <p class="market">{market}</p>
+</article>
+
+<style>
+  .idea-card {
+    min-width: 0;
+    padding: var(--space-24);
+    border: var(--border);
+    box-shadow: var(--shadow-idea);
+    background: var(--color-white);
+    overflow-wrap: anywhere;
+  }
+
+  h3 {
+    margin-bottom: var(--space-12);
+    font-size: var(--text-idea-title);
+  }
+
+  p {
+    margin: 0 0 var(--space-12);
+  }
+
+  .market {
+    color: var(--color-mute);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+  }
+</style>

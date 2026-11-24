@@ -1,0 +1,44 @@
+---
+interface Props {
+  title: string;
+  caption?: string;
+}
+
+const { title, caption = '' } = Astro.props;
+---
+
+<div class="section-heading">
+  <h2>{title}</h2>
+  {caption && <span>{caption}</span>}
+</div>
+
+<style>
+  .section-heading {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-22);
+    margin-bottom: var(--space-26);
+  }
+
+  h2 {
+    min-width: 0;
+    font-size: var(--text-section);
+    overflow-wrap: anywhere;
+  }
+
+  span {
+    color: var(--color-mute);
+    font-weight: var(--weight-bold);
+  }
+
+  @media (max-width: 900px) {
+    .section-heading {
+      gap: var(--space-8) var(--space-18);
+    }
+
+    h2 {
+      font-size: var(--text-section-mobile);
+    }
+  }
+</style>

@@ -3,5 +3,10 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  integrations: [mdx(), sitemap()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => !/(?:^|\/)dev(?:\/|$)/.test(new URL(page).pathname),
+    }),
+  ],
 });

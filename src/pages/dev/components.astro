@@ -1,0 +1,315 @@
+---
+import ArchDiagram from '../../components/diagrams/ArchDiagram.astro';
+import ClientRow from '../../components/sections/ClientRow.astro';
+import Hero from '../../components/sections/Hero.astro';
+import BudgetBar from '../../components/ui/BudgetBar.astro';
+import Chip from '../../components/ui/Chip.astro';
+import IdeaCard from '../../components/ui/IdeaCard.astro';
+import MilestoneList from '../../components/ui/MilestoneList.astro';
+import Panel from '../../components/ui/Panel.astro';
+import Poster from '../../components/ui/Poster.astro';
+import PullQuote from '../../components/ui/PullQuote.astro';
+import SectionHeading from '../../components/ui/SectionHeading.astro';
+import Sticker from '../../components/ui/Sticker.astro';
+import TargetList from '../../components/ui/TargetList.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+  budgetSegments,
+  gatewayDescription,
+  gatewayEdges,
+  gatewayNodes,
+} from '../../lib/component-examples';
+---
+
+<BaseLayout
+  title="Components | Portfolio"
+  description="Design component examples for review. All portfolio content is unconfirmed."
+>
+  <p class="notice">
+    Component preview. All content is illustrative, not approved portfolio
+    facts. TODO: Supply real content.{' '}
+    <a href="#posters">Go to the component samples</a>.
+  </p>
+
+  <Hero
+    nameLines={['TODO:', 'Name']}
+    description="TODO: Add an approved introduction about the work, the approach, and the kinds of systems shown in this portfolio."
+    role="TODO: Role"
+    caption="TODO: Approved role caption"
+  />
+
+  <section id="posters" class="sample" aria-label="Poster samples">
+    <SectionHeading
+      title="In progress"
+      caption="Poster color and content variants"
+    />
+    <div class="wall">
+      <Poster
+        id="primary-example"
+        title="TODO: Gateway"
+        description="TODO: Add the approved gateway summary."
+        href="#sample-details"
+        sticker="Prototype"
+      >
+        <ArchDiagram
+          id="primary-diagram"
+          title="Illustrative gateway on a primary poster"
+          description={gatewayDescription}
+          nodes={gatewayNodes}
+          edges={gatewayEdges}
+          variant="poster"
+        />
+      </Poster>
+      <Poster
+        id="accent-example"
+        title="TODO: Project"
+        description="TODO: Add the approved project summary."
+        href="#sample-details"
+        variant="accent"
+        sticker="Early design"
+      >
+        <ArchDiagram
+          id="accent-diagram"
+          title="Illustrative gateway on an accent poster"
+          description={gatewayDescription}
+          nodes={gatewayNodes}
+          edges={gatewayEdges}
+          variant="poster"
+        />
+      </Poster>
+      <Poster
+        id="support-example"
+        title="TODO: Latest note"
+        description="TODO: Add an approved note summary, publication date, and reading time."
+        href="#sample-details"
+        variant="support"
+        kind="note"
+        sticker="Latest note"
+      />
+    </div>
+  </section>
+
+  <section class="sample" aria-label="Delivered project sample">
+    <SectionHeading title="Delivered" caption="TODO: Approved project count" />
+    <div class="delivered">
+      <ClientRow
+        client="TODO: Client"
+        years="TODO: Years"
+        title="TODO: Project title."
+        description="TODO: Add an approved description of the work and its result. No client or performance claim is confirmed."
+        tags={['TODO: Technology', 'TODO: Platform']}
+        metrics={[
+          { value: 'TODO:', label: 'Approved result' },
+          { value: 'TODO:', label: 'Verified metric' },
+        ]}
+        links={[{ label: 'Sample case study', url: '#sample-details' }]}
+      />
+    </div>
+  </section>
+
+  <section class="sample" aria-label="Idea samples">
+    <SectionHeading title="Ideas" caption="Not built yet" />
+    <div class="ideas">
+      <IdeaCard
+        title="TODO: Idea"
+        pitch="TODO: Add the problem and a short description of the proposed solution."
+        market="TODO: Name existing alternatives and the assumption to test."
+        stage="researching"
+      />
+      <IdeaCard
+        title="TODO: Next idea"
+        pitch="TODO: Add an approved pitch. This card shows the refining stage."
+        market="TODO: Explain the market and what is still untested."
+        stage="refining"
+      />
+    </div>
+  </section>
+
+  <section
+    id="sample-details"
+    class="sample"
+    aria-label="Project detail samples"
+  >
+    <SectionHeading
+      title="Project details"
+      caption="Panels, targets, and milestones"
+    />
+    <div class="details">
+      <div>
+        <h3>Architecture</h3>
+        <p>
+          Illustrative Model gateway from the reference. TODO: Confirm the
+          architecture.
+        </p>
+        <Panel label="Architecture panel">
+          <ArchDiagram
+            id="panel-diagram"
+            title="Illustrative Model gateway architecture"
+            description={gatewayDescription}
+            nodes={gatewayNodes}
+            edges={gatewayEdges}
+          />
+        </Panel>
+        <h3 class="detail-heading">Targets</h3>
+        <p>Goals, not measured results.</p>
+        <TargetList
+          items={[
+            { label: 'TODO: Goal', value: 'TODO: Approved target' },
+            { label: 'TODO: Capability', value: 'TODO: Scope' },
+          ]}
+        />
+        <h3 class="detail-heading">Milestones</h3>
+        <p>Sample states only. TODO: Supply the real milestones.</p>
+        <MilestoneList
+          items={[
+            { title: 'TODO: Completed milestone', status: 'done' },
+            { title: 'TODO: Current milestone', status: 'in-progress' },
+            { title: 'TODO: Future milestone', status: 'next' },
+          ]}
+        />
+      </div>
+      <div>
+        <h3>Chips</h3>
+        <div class="chips">
+          <Chip label="TODO: Technology" />
+          <Chip label="TODO: Long technology label that must wrap on a phone" />
+          <Chip label="Researching" variant="stage" />
+          <Chip label="Refining" variant="stage" />
+        </div>
+        <h3 class="detail-heading">Project sticker</h3>
+        <div class="sticker-sample">
+          <Sticker label="Prototype" variant="project" />
+        </div>
+        <h3 class="detail-heading">Table panel</h3>
+        <Panel label="Table panel">
+          <table>
+            <caption>TODO: Table content</caption>
+            <thead>
+              <tr>
+                <th scope="col">Field</th>
+                <th scope="col">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">TODO: Label</th>
+                <td>TODO: Value</td>
+              </tr>
+            </tbody>
+          </table>
+        </Panel>
+      </div>
+    </div>
+  </section>
+
+  <section class="sample" aria-label="Article component samples">
+    <SectionHeading title="Article samples" />
+    <div class="article">
+      <h3>Budget bar</h3>
+      <BudgetBar
+        label="Illustrative latency budget in milliseconds"
+        segments={budgetSegments}
+        caption="Illustrative reference values only. TODO: Add an approved budget."
+      />
+      <h3 class="detail-heading">Pull quote</h3>
+      <PullQuote text="TODO: Add an approved quotation for the article." />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notice {
+    font-size: var(--text-sm);
+  }
+
+  .sample {
+    margin-top: var(--space-84);
+  }
+
+  .wall,
+  .ideas,
+  .details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--gap);
+  }
+
+  .wall {
+    padding: var(--space-10) var(--space-14) var(--space-18);
+  }
+
+  .ideas {
+    padding-right: var(--space-8);
+  }
+
+  .delivered {
+    border-top: var(--border-heavy);
+  }
+
+  .details > * {
+    min-width: 0;
+  }
+
+  .details {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-40);
+    padding-right: var(--space-8);
+  }
+
+  h3 {
+    font-size: var(--text-h2-page);
+    overflow-wrap: anywhere;
+  }
+
+  .detail-heading {
+    margin-top: var(--space-50);
+  }
+
+  .chips,
+  .sticker-sample {
+    margin-top: var(--space-20);
+  }
+
+  .sticker-sample {
+    padding: var(--space-40);
+    background: var(--color-primary);
+    color: var(--color-accent);
+  }
+
+  .article {
+    max-width: var(--measure-article);
+    padding-right: var(--space-8);
+    font-size: var(--text-article);
+    line-height: var(--leading-article);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+
+  caption {
+    text-align: left;
+    font-weight: var(--weight-bold);
+  }
+
+  th,
+  td {
+    padding-block: var(--space-14);
+    border-bottom: var(--border-hairline);
+  }
+
+  @media (max-width: 900px) {
+    .wall,
+    .ideas,
+    .details {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--gap);
+    }
+
+    .wall {
+      padding: var(--space-6) var(--space-8) var(--space-14);
+    }
+  }
+</style>

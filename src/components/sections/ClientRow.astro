@@ -1,0 +1,117 @@
+---
+import Chip from '../ui/Chip.astro';
+
+interface Props {
+  client: string;
+  years: string;
+  title: string;
+  description: string;
+  tags: readonly string[];
+  metrics: readonly { value: string; label: string }[];
+  links?: readonly { label: string; url: string }[];
+}
+
+const {
+  client,
+  years,
+  title,
+  description,
+  tags,
+  metrics,
+  links = [],
+} = Astro.props;
+---
+
+<article class="client-row">
+  <div>
+    <h3>{client}</h3>
+    <div class="years">{years}</div>
+  </div>
+  <div>
+    <p>
+      <strong>{title}</strong> {description}
+    </p>
+    <ul class="tags" aria-label="Technologies">
+      {tags.map((tag) => (
+        <li>
+          <Chip label={tag} />
+        </li>
+      ))}
+    </ul>
+    {links.length > 0 && (
+      <ul class="links" aria-label="Project links">
+        {links.map((link) => (
+          <li>
+            <a href={link.url} aria-label={`${link.label}: ${title}`}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+  <ul class="metrics" aria-label="Results">
+    {metrics.map((metric) => (
+      <li>
+        {metric.value} {metric.label}
+      </li>
+    ))}
+  </ul>
+</article>
+
+<style>
+  .client-row {
+    display: grid;
+    grid-template-columns: minmax(var(--client-min), 1.1fr) 1.6fr 1fr;
+    gap: var(--space-32);
+    align-items: start;
+    padding-block: var(--space-26);
+    border-bottom: var(--border-thin);
+  }
+
+  .client-row > * {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  h3 {
+    font-size: var(--text-client);
+  }
+
+  .years {
+    margin-top: var(--space-8);
+    color: var(--color-mute);
+    font-weight: var(--weight-bold);
+  }
+
+  p {
+    max-width: var(--measure-article);
+    margin: 0 0 var(--space-12);
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tags li,
+  .links li {
+    display: inline;
+  }
+
+  .links a {
+    margin-right: var(--space-16);
+    font-weight: var(--weight-bold);
+  }
+
+  .metrics {
+    font-weight: var(--weight-bold);
+  }
+
+  @media (max-width: 900px) {
+    .client-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
