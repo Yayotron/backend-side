@@ -1,0 +1,124 @@
+---
+import Sticker from './Sticker.astro';
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  href: string;
+  variant?: 'primary' | 'accent' | 'support';
+  kind?: 'project' | 'note';
+  sticker?: string;
+}
+
+const {
+  id,
+  title,
+  description,
+  href,
+  variant = 'primary',
+  kind = 'project',
+  sticker = '',
+} = Astro.props;
+---
+
+<article class:list={['poster', variant, kind]}>
+  {sticker && <Sticker label={sticker} />}
+  <h3 id={`${id}-title`}>
+    <a {href} aria-describedby={`${id}-description`}>
+      {title}
+    </a>
+  </h3>
+  {Astro.slots.has('default') && (
+    <div class="visual">
+      <slot />
+    </div>
+  )}
+  <p id={`${id}-description`}>{description}</p>
+</article>
+
+<style>
+  .poster {
+    --poster-background: var(--color-primary);
+    --focus-color: var(--color-accent);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    aspect-ratio: var(--poster-ratio);
+    margin-inline: auto;
+    padding: var(--space-26);
+    border: var(--border);
+    box-shadow: var(--shadow-card);
+    background: var(--poster-background);
+    color: var(--color-accent);
+    text-decoration: none;
+    overflow: hidden;
+  }
+
+  .poster:nth-child(odd) {
+    transform: rotate(var(--tilt-left));
+  }
+
+  .poster:nth-child(even) {
+    transform: rotate(var(--tilt-right));
+  }
+
+  .accent,
+  .support {
+    --focus-color: var(--color-primary);
+
+    color: var(--color-ink);
+  }
+
+  .accent {
+    --poster-background: var(--color-accent);
+  }
+
+  .support {
+    --poster-background: var(--color-support);
+  }
+
+  h3 {
+    margin-top: var(--space-34);
+    font-size: var(--text-poster-title);
+    overflow-wrap: anywhere;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .note h3 {
+    font-size: var(--text-note-poster);
+  }
+
+  .visual {
+    min-width: 0;
+    margin-inline: calc(-1 * var(--space-6));
+  }
+
+  p {
+    max-width: var(--measure-poster);
+    margin: 0;
+    font-size: var(--text-sm);
+    font-weight: var(--weight-bold);
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 900px) {
+    .poster {
+      max-width: var(--poster-max);
+    }
+  }
+</style>

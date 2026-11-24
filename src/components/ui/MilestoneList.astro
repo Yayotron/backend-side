@@ -1,0 +1,64 @@
+---
+interface Props {
+  items: readonly {
+    title: string;
+    status: 'done' | 'in-progress' | 'next';
+  }[];
+}
+
+const { items } = Astro.props;
+const labels = {
+  done: 'Done',
+  'in-progress': 'In progress',
+  next: 'Next',
+};
+---
+
+<ul class="milestones" aria-label="Milestones">
+  {items.map((item) => (
+    <li>
+      <span class="title">{item.title}</span>
+      <span class:list={['status', item.status]}>{labels[item.status]}</span>
+    </li>
+  ))}
+</ul>
+
+<style>
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    gap: var(--space-16);
+    align-items: center;
+    padding-block: var(--space-12);
+    border-bottom: var(--border-hairline);
+  }
+
+  .title {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .status {
+    flex-shrink: 0;
+    margin-left: auto;
+    padding: var(--space-2) var(--space-12);
+    border: var(--border-thin);
+    box-shadow: var(--shadow-tiny);
+    background: var(--color-paper);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-bold);
+  }
+
+  .done {
+    background: var(--color-support);
+  }
+
+  .in-progress {
+    background: var(--color-accent);
+  }
+</style>

@@ -1,0 +1,32 @@
+---
+interface Props {
+  label: string;
+  variant?: 'default' | 'stage';
+}
+
+const { label, variant = 'default' } = Astro.props;
+---
+
+<span class:list={['chip', variant]}>{label}</span>
+
+<style>
+  .chip {
+    display: inline-block;
+    margin: 0 var(--space-6) var(--space-6) 0;
+    padding: var(--space-1) var(--space-9);
+    border: var(--border-thin);
+    background: var(--color-white);
+    color: var(--color-ink);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    overflow-wrap: anywhere;
+  }
+
+  .stage {
+    margin-bottom: var(--space-14);
+    padding: var(--space-2) var(--space-10);
+    border: 0;
+    background: var(--color-accent);
+    font-weight: var(--weight-bold);
+  }
+</style>

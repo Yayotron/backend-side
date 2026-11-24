@@ -1,0 +1,29 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<blockquote>
+  <p>{text}</p>
+</blockquote>
+
+<style>
+  blockquote {
+    max-width: var(--measure-quote);
+    margin: var(--space-44) 0;
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-size: var(--text-pull);
+    font-weight: var(--weight-regular);
+    letter-spacing: var(--tracking-block);
+    line-height: var(--leading-solid);
+    overflow-wrap: anywhere;
+  }
+
+  p {
+    margin: 0;
+  }
+</style>
